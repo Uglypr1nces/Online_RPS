@@ -20,11 +20,19 @@ GitHub: Version control and collaboration platform for managing project code.
 
 How to Play:
 ---------------------------------------------------------------------------------------------------------------------------------------
+1. Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website
 
+2. locate the server.py file and change the ip address to yours (make sure you port forwarded it on the router)
 
-Choose your move (rock, paper, or scissors) when prompted.
-Await your opponent's move and see the outcome of each round.
-Enjoy playing rock-paper-scissors with friends online!
+3. Start the server
+```bash
+ python server.py
+
+4. Start the game
+```bash
+ dotnet build Online_RPS.sln
+
+5. Enjoy :)
 
 Contributing:
 ---------------------------------------------------------------------------------------------------------------------------------------
