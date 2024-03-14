@@ -21,23 +21,29 @@ namespace Online_RPS
 
         string player;
         string otherplayer;
-
         string playerchoice = null;
         string otherplayerchoice = null;
 
-        int time = 10;
+        string paperimg = Path.Combine(Application.StartupPath, "images/paper.jpg");
+        string rockimg = Path.Combine(Application.StartupPath, "images/rock.jpg");
+        string scissorsimg = Path.Combine(Application.StartupPath, "images/scissors.jpg");
 
-        int buttonpresses = 1;
-
-        bool gamestart = false;
+        int namechanges = 1;
 
         public Form1()
         {
+            InitializeComponent();
             InitializeConnection();
             Task.Run(() => recieve());
             send("hello world");
-            InitializeComponent();
 
+            pictureBox1.Load(paperimg);
+            pictureBox2.Load(rockimg);
+            pictureBox3.Load(scissorsimg);
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
         }
 
         private void InitializeConnection()
@@ -51,12 +57,6 @@ namespace Online_RPS
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void gamestarter()
-        {
-            timer1.Interval = 1000;
-            timer1.Start();
         }
         public void send(string message)
         {
@@ -72,7 +72,6 @@ namespace Online_RPS
                 MessageBox.Show(ex.Message);
             }
         }
-
         public void recieve()
         {
             try
@@ -85,30 +84,18 @@ namespace Online_RPS
                 {
                     string response = new string(buffer, 0, bytesRead);
 
-                    if (response.Substring(0, 4) == "name")
+                    if (response.Substring(0, 4) == "name" && namechanges != 0)
                     {
                         player = response.Substring(5);
+                        namechanges = 0;
 
                         if (player == "player1") { otherplayer = "player2"; }
                         else { otherplayer = "player1"; }
-
                     }
 
-                    if (response.Contains("gamestart"))
-                    {
-                        gamestart = true;
-                        gamestarter();
-
-                        MessageBox.Show("game is starting");
-                    }
-
-                    if (response == otherplayer + "scissors")
-                    {
-                        MessageBox.Show("other player picked scissors");
-                    }
+                    if (response == "you won" ^ response == "you lost") { MessageBox.Show(response); }
 
                     buffer = new char[1024];
-
                 }
             }
             catch (Exception ex)
@@ -117,57 +104,25 @@ namespace Online_RPS
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if (buttonpresses != 0 && gamestart)
-            {
-                if (player == "player1") { playerchoice = "paper"; }
-                else { otherplayerchoice = "paper"; }
-                send(player + "paper");
-
-                buttonpresses = 0;
-            }
-
-        }
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (buttonpresses != 0 && gamestart)
-            {
-                if (player == "player1") { playerchoice = "rock"; }
-                else { otherplayerchoice = "rock"; }
-                send(player + "rock");
-
-                buttonpresses = 0;
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (buttonpresses != 0 && gamestart)
-            {
-                if (player == "player1") { playerchoice = "scissors"; }
-                else { otherplayerchoice = "scissors"; }
-                send(player + "scissors");
-
-                buttonpresses = 0;
-            }
+            if (player == "player1") { playerchoice = "paper"; }
+            else { otherplayerchoice = "paper"; }
+            send(player + "paper");
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Invoke(new MethodInvoker(delegate
-            {
-                label1.Text = Convert.ToString(time);
-            }));
-
-            time--;
-
-            if (time < 0)
-            {
-                buttonpresses++;
-                time = 10;
-                //Thread.Sleep(5000);
-            }
+            if (player == "player1") { playerchoice = "rock"; }
+            else { otherplayerchoice = "rock"; }
+            send(player + "rock");
         }
 
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            if (player == "player1") { playerchoice = "scissors"; }
+            else { otherplayerchoice = "scissors"; }
+            send(player + "scissors");
+        }
     }
 }
