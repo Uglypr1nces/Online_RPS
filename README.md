@@ -20,17 +20,17 @@ GitHub: Version control and collaboration platform for managing project code.
 
 How to Play:
 ---------------------------------------------------------------------------------------------------------------------------------------
-1. Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website
-
+1. Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website, Make sure you have python3 installed aswell
+ 
 2. locate the server.py file and change the ip address to yours (make sure you port forwarded it on the router)
 
-3. Start the server
-```bash
- python server.py
+3. Start the server:
+   ```bash
+    python server.py
 
-4. Start the game
-```bash
- dotnet build Online_RPS.sln
+4. Start Game:
+   ```bash
+    dotnet build Online_RPS.sln
 
 5. Enjoy :)
 
