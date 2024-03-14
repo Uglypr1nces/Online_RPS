@@ -11,10 +11,15 @@ DISCONNECT = "!bye"
 
 playeroneoption = ""
 playertwooption = ""
-choices_count = 0
 
-Connections = []
+playeronechoicecount = 0
+playertwochoicecount = 0
+
+player1_conn = None
+player2_conn = None
+
 # Creating a socket, picking the family, pick a type
+
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind(ADDR)
 
@@ -48,7 +53,10 @@ def checkwinner(playeroneoption,playertwooption):
 def handle_client(conn, addr):
     global playeroneoption
     global playertwooption
-    global choices_count
+    global playeronechoicecount
+    global playertwochoicecount
+    global player1_conn
+    global player2_conn
 
     connected = True
     try:
@@ -56,37 +64,30 @@ def handle_client(conn, addr):
             msg = conn.recv(1024).decode(FORMAT)
             if msg == DISCONNECT:
                 connected = False
-            if len(Connections) < 2:         
+
+            if player1_conn is None:
+                player1_conn = conn
                 conn.send("name:player1".encode(FORMAT))
-            else:
-                print("game starting")
-                conn.send("gamestart".encode(FORMAT))
-                conn.send("name:player2".encode(FORMAT)) 
+            elif player2_conn is None:
+                player2_conn = conn
+                conn.send("name:player2".encode(FORMAT))
 
-            if msg == "player1scissors":
-                playeroneoption = "scissors"
-                choices_count += 1
-            if msg == "player1rock":
-                playeroneoption = "rock"
-                choices_count += 1
-            if msg == "player1paper":
-                playeroneoption = "paper"
-                choices_count += 1
-            if msg == "player2scissors":
-                playertwooption = "scissors"
-                choices_count += 1
-            if msg == "player2rock":
-                playertwooption = "rock"
-                choices_count += 1
-            if msg == "player2paper":
-                playertwooption = "paper"
-                choices_count += 1
+            if msg.startswith("player1"):
+                playeroneoption = msg[len("player1"):]
+                playeronechoicecount += 1
+            elif msg.startswith("player2"):
+                playertwooption = msg[len("player2"):]
+                playertwochoicecount += 1
 
-            if choices_count == 2:
-                if checkwinner(playeroneoption, playertwooption) == True:
+            if playeronechoicecount + playertwochoicecount == 2:
+                if checkwinner(playeroneoption, playertwooption):
                     print("Player one won")
+                    player1_conn.send("you won".encode(FORMAT))
+                    player2_conn.send("you lost".encode(FORMAT))
                 else:
                     print("player two won")
+                    player2_conn.send("you won".encode(FORMAT))
+                    player1_conn.send("you lost".encode(FORMAT))
 
             print(msg)
     except ConnectionResetError:
@@ -100,7 +101,6 @@ def start():
     while True:
         conn, addr = server_socket.accept()  # Waits for a connection, when a connection occurs it will store the data
         print(f"addr = {addr}")
-        Connections.append(addr)
         thread = threading.Thread(target=handle_client, args=(conn, addr))
         thread.start()
 
