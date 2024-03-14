@@ -23,21 +23,21 @@ namespace Online_RPS
         string otherplayer;
 
         string playerchoice = null;
-        string otherplayerchoice = null;  
+        string otherplayerchoice = null;
 
         int time = 10;
 
+        int buttonpresses = 1;
+
+        bool gamestart = false;
+
         public Form1()
         {
-            InitializeComponent();
             InitializeConnection();
-
             Task.Run(() => recieve());
-
-            timer1.Interval = 1000;
-            timer1.Start();
-
             send("hello world");
+            InitializeComponent();
+
         }
 
         private void InitializeConnection()
@@ -53,6 +53,11 @@ namespace Online_RPS
             }
         }
 
+        private void gamestarter()
+        {
+            timer1.Interval = 1000;
+            timer1.Start();
+        }
         public void send(string message)
         {
             try
@@ -80,19 +85,30 @@ namespace Online_RPS
                 {
                     string response = new string(buffer, 0, bytesRead);
 
-                    if (response.Substring(0,4) == "name")
+                    if (response.Substring(0, 4) == "name")
                     {
                         player = response.Substring(5);
 
-                        if(player == "player1"){otherplayer = "player2";}
-                        else{otherplayer = "player1";}
+                        if (player == "player1") { otherplayer = "player2"; }
+                        else { otherplayer = "player1"; }
+
                     }
-                    
+
+                    if (response.Contains("gamestart"))
+                    {
+                        gamestart = true;
+                        gamestarter();
+
+                        MessageBox.Show("game is starting");
+                    }
+
                     if (response == otherplayer + "scissors")
                     {
                         MessageBox.Show("other player picked scissors");
                     }
+
                     buffer = new char[1024];
+
                 }
             }
             catch (Exception ex)
@@ -103,33 +119,55 @@ namespace Online_RPS
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(player == "player1"){playerchoice = "paper";}
-            else{otherplayerchoice = "paper";}
-            send(player + "paper");
+            if (buttonpresses != 0 && gamestart)
+            {
+                if (player == "player1") { playerchoice = "paper"; }
+                else { otherplayerchoice = "paper"; }
+                send(player + "paper");
+
+                buttonpresses = 0;
+            }
+
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (player == "player1") { playerchoice = "rock"; }
-            else { otherplayerchoice = "rock"; }
-            send(player + "rock");
+            if (buttonpresses != 0 && gamestart)
+            {
+                if (player == "player1") { playerchoice = "rock"; }
+                else { otherplayerchoice = "rock"; }
+                send(player + "rock");
+
+                buttonpresses = 0;
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            if (player == "player1") { playerchoice = "scissors"; }
-            else { otherplayerchoice = "scissors"; }
-            send(player + "scissors");
+            if (buttonpresses != 0 && gamestart)
+            {
+                if (player == "player1") { playerchoice = "scissors"; }
+                else { otherplayerchoice = "scissors"; }
+                send(player + "scissors");
+
+                buttonpresses = 0;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = Convert.ToString(time);
+            Invoke(new MethodInvoker(delegate
+            {
+                label1.Text = Convert.ToString(time);
+            }));
+
             time--;
 
             if (time < 0)
             {
+                buttonpresses++;
                 time = 10;
-                Thread.Sleep(5000);
+                //Thread.Sleep(5000);
             }
         }
+
     }
 }
