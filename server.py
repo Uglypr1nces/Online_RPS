@@ -3,7 +3,6 @@ import threading
 
 port = 5555
 server = "192.168.1.53"
-print(server)
 HEADER = 64
 ADDR = (server, port)
 FORMAT = "utf-8"
@@ -19,10 +18,8 @@ player1_conn = None
 player2_conn = None
 
 # Creating a socket, picking the family, pick a type
-
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind(ADDR)
-
 
 def send_message(conn, msg):
     message = msg.encode(FORMAT)
@@ -49,7 +46,6 @@ def checkwinner(playeroneoption,playertwooption):
     else:
         print(f"draw, player one picked: {playeroneoption}, playertwo picked: {playertwooption}")
     
-
 def handle_client(conn, addr):
     global playeroneoption
     global playertwooption
@@ -84,11 +80,19 @@ def handle_client(conn, addr):
                     print("Player one won")
                     player1_conn.send("you won".encode(FORMAT))
                     player2_conn.send("you lost".encode(FORMAT))
+                    playeronechoicecount = 0
+                    playertwochoicecount = 0
+                    playeronechoicecount = ""
+                    playertwochoicecount = ""
                 else:
                     print("player two won")
                     player2_conn.send("you won".encode(FORMAT))
                     player1_conn.send("you lost".encode(FORMAT))
-
+                    playeronechoicecount = 0
+                    playertwochoicecount = 0
+                    playeronechoicecount = ""
+                    playertwochoicecount = ""
+                    
             print(msg)
     except ConnectionResetError:
         print(f"Connection with {addr} was forcibly closed.")
