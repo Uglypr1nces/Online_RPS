@@ -54,7 +54,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Impact", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(159, 23);
+            this.label1.Location = new System.Drawing.Point(15, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 54);
             this.label1.TabIndex = 0;
@@ -67,6 +67,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(176, 159);
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // pictureBox2
             // 
@@ -75,6 +76,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(176, 159);
             this.pictureBox2.TabIndex = 5;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click_1);
             // 
             // pictureBox3
             // 
@@ -83,6 +85,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(176, 159);
             this.pictureBox3.TabIndex = 6;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click_1);
             // 
             // Form1
             // 

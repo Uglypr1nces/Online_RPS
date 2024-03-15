@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Online_RPS
 {
@@ -27,6 +28,9 @@ namespace Online_RPS
         string paperimg = Path.Combine(Application.StartupPath, "images/paper.jpg");
         string rockimg = Path.Combine(Application.StartupPath, "images/rock.jpg");
         string scissorsimg = Path.Combine(Application.StartupPath, "images/scissors.jpg");
+
+        string youloose = Path.Combine(Application.StartupPath, "stuff/you loose.mp4");
+        string youwin = Path.Combine(Application.StartupPath, "stuff/you win.mp4");
 
         int namechanges = 1;
 
@@ -91,9 +95,18 @@ namespace Online_RPS
 
                         if (player == "player1") { otherplayer = "player2"; }
                         else { otherplayer = "player1"; }
+
+                        label1.Text = player;
                     }
 
-                    if (response == "you won" ^ response == "you lost") { MessageBox.Show(response); }
+                    if(response.Contains("you won"))
+                    {
+                        videoplayer(youwin);
+                    }
+                    else if(response.Contains("you lost"))
+                    {
+                        videoplayer(youloose);
+                    }
 
                     buffer = new char[1024];
                 }
@@ -103,22 +116,30 @@ namespace Online_RPS
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void videoplayer(string path)
+        {
+            try
+            {
+               Process.Start(path);
+            }
+            catch
+            {
+                MessageBox.Show("COULD NOT PLAY");
+            }
+        }
+        private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             if (player == "player1") { playerchoice = "paper"; }
             else { otherplayerchoice = "paper"; }
             send(player + "paper");
         }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click_1(object sender, EventArgs e)
         {
             if (player == "player1") { playerchoice = "rock"; }
             else { otherplayerchoice = "rock"; }
             send(player + "rock");
         }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
+        private void pictureBox3_Click_1(object sender, EventArgs e)
         {
             if (player == "player1") { playerchoice = "scissors"; }
             else { otherplayerchoice = "scissors"; }
