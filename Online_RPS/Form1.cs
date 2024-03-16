@@ -107,7 +107,7 @@ namespace Online_RPS
                     {
                         videoplayer(youloose);
                     }
-
+                    response = "";
                     buffer = new char[1024];
                 }
             }
