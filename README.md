@@ -19,25 +19,30 @@ C# (WinForms): Frontend client implementation using C# with WinForms for the gra
 Ngrok: Route IP Address
 GitHub: Version control and collaboration platform for managing project code.
 
-How to Play:
+How to Play running a local server:
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 ## Local Network
-0. Install Project 
+- Install Project 
     ```bash
     git clone https://github.com/Uglypr1nces/Online_RPS.git
+  
+- Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website. For example, for MAC
+```bash
+brew install dotnet-sdk
+```
 
-1. Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website, Make sure you have python3 installed aswell
- 
-2. locate the server.py file and change the ip address to yours (make sure you port forwarded it on the router)
+- Make sure you have python3 installed as well
 
-3. Start the server:
-   ```bash
+- Start the server:
+```bash
     python server.py
+```
 
 4. Start Game:
    ```bash
     dotnet build Online_RPS.sln
+   ```
 
 5. Enjoy :)
 

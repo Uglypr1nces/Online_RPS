@@ -2,7 +2,7 @@ import socket
 import threading
 
 port = 5555
-server = "192.168.1.53"
+server = "localhost"
 HEADER = 64
 ADDR = (server, port)
 FORMAT = "utf-8"
