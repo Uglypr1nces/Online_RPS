@@ -19,7 +19,7 @@ C# (WinForms): Frontend client implementation using C# with WinForms for the gra
 Ngrok: Route IP Address
 GitHub: Version control and collaboration platform for managing project code.
 
-How to Play
+How to Play (for Windows)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
 - Clone the Project
