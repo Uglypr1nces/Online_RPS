@@ -54,7 +54,7 @@ namespace Online_RPS
         {
             try
             {
-                client = new TcpClient("0.tcp.eu.ngrok.io", 14590);
+                client = new TcpClient("4.tcp.eu.ngrok.io", 16676);
                 stream = client.GetStream();
             }
             catch (Exception ex)
