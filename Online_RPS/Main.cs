@@ -15,7 +15,7 @@ using System.Diagnostics;
 
 namespace Online_RPS
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         TcpClient client;
         NetworkStream stream;
@@ -25,16 +25,16 @@ namespace Online_RPS
         string playerchoice = null;
         string otherplayerchoice = null;
 
-        string paperimg = Path.Combine(Application.StartupPath, "images/paper.jpg");
-        string rockimg = Path.Combine(Application.StartupPath, "images/rock.jpg");
-        string scissorsimg = Path.Combine(Application.StartupPath, "images/scissors.jpg");
+        string paperimg = Path.Combine(Application.StartupPath, "content/paper.jpg");
+        string rockimg = Path.Combine(Application.StartupPath, "content/rock.jpg");
+        string scissorsimg = Path.Combine(Application.StartupPath, "content/scissors.jpg");
 
-        string youloose = Path.Combine(Application.StartupPath, "stuff/you loose.mp4");
-        string youwin = Path.Combine(Application.StartupPath, "stuff/you win.mp4");
+        string youloose = Path.Combine(Application.StartupPath, "content/you loose.mp4");
+        string youwin = Path.Combine(Application.StartupPath, "content/you win.mp4");
 
         int namechanges = 1;
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             InitializeConnection();
