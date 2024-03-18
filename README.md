@@ -19,60 +19,39 @@ C# (WinForms): Frontend client implementation using C# with WinForms for the gra
 Ngrok: Route IP Address
 GitHub: Version control and collaboration platform for managing project code.
 
-How to Play running a local server:
+How to Play
 ---------------------------------------------------------------------------------------------------------------------------------------
 
-## Local Network
-- Install Project 
-    ```bash
-    git clone https://github.com/Uglypr1nces/Online_RPS.git
+- Clone the Project
+```bash
+   git clone https://github.com/Uglypr1nces/Online_RPS.git
+```
+- Install Dotnet.8.x sdk on the official dotnet website: https://dotnet.microsoft.com/en-us/download
+
+- Create an ngrok account at https://ngrok.com/ and download the exe in the server folder (if youre the one running the server)
   
-- Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website. For example, for MAC
+- Build Project
 ```bash
-brew install dotnet-sdk
-```
-
-- Make sure you have python3 installed as well
-
-- Start the server:
-```bash
-    python server.py
-```
-
-4. Start Game:
-   ```bash
+    cd Online_RPS
     dotnet build Online_RPS.sln
-   ```
-
-5. Enjoy :)
-
-## Wide area Network
-
-0. Install Project 
-    ```bash
-    git clone https://github.com/Uglypr1nces/Online_RPS.git
-    
-1. Install .NET Core SDK: You can download and install the .NET Core SDK from the official .NET website, Make sure you have python3 installed aswell
-
-2. Create an ngrok account at https://ngrok.com/ and follow the install guide
-
-3. Move into the Directory in which ngrok is installed
-
-4. Create the Server at port 8000
-   ```bash
+```
+- Move Content
+```bash
+    cd Online_RPS
+    powershell -file image_mover.ps1
+    cd ..
+```
+- Run Server
+```bash
+    cd Server
     ngrok.exe tcp 8000
-   
-5. Locate the Form1.cs in the Game folder (Online_RPS) and change the 57 to your ngrok url
-
-6. Start the server:
-   ```bash
     python server.py
-
-7. Start Game:
-   ```bash
-    dotnet build Online_RPS.sln
-
-8. Enjoy :)
+    cd ..
+```
+- Run Game
+```bash
+    Online_RPS/bin/Debug/Online_RPS.exe
+```
 
 Contributing:
 ---------------------------------------------------------------------------------------------------------------------------------------
