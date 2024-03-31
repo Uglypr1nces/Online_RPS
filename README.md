@@ -60,4 +60,4 @@ Any improvements, bug fixes, or feature enhancements are highly appreciated.
 
 Screenshots:
 ---------------------------------------------------------------------------------------------------------------------------------------
-<img src="Online_RPS/content/projekt.png" alt="alt text">
+<img src="Online_RPS/content/projekt3.png" alt="alt text">
