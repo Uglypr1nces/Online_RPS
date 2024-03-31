@@ -57,3 +57,7 @@ Contributing:
 ---------------------------------------------------------------------------------------------------------------------------------------
 Contributions are welcome! If you'd like to contribute to the project, feel free to fork the repository, make your changes, and submit a pull request.
 Any improvements, bug fixes, or feature enhancements are highly appreciated.
+
+Screenshots:
+---------------------------------------------------------------------------------------------------------------------------------------
+<img src="Online_RPS/content/projekt.png" alt="alt text">
