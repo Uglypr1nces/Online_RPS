@@ -25,7 +25,7 @@ How to Play (for Windows)
 
 - Install visual Studio <a href="https://visualstudio.microsoft.com/downloads">here</a>
 
-- Once opened, clone the repo https://github.com/Uglypr1nces/Math_Quiz.git in Visual Studio
+- Once opened, clone the repo https://github.com/Uglypr1nces/Online_RPS.git in Visual Studio
 
 - Run project, you will get a file missing error but dont worry, after youve ran it, execute the file_mover.ps1 using powershell
 
