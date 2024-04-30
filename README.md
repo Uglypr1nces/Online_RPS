@@ -21,14 +21,23 @@ GitHub: Version control and collaboration platform for managing project code.
 
 How to Play (for Windows)
 ---------------------------------------------------------------------------------------------------------------------------------------
+### Using Visual Studio (highly recommended)
+
+- Install visual Studio <a href="https://visualstudio.microsoft.com/downloads">here</a>
+
+- Once opened, clone the repo https://github.com/Uglypr1nces/Math_Quiz.git in Visual Studio
+
+- Run project, you will get a file missing error but dont worry, after youve ran it, execute the file_mover.ps1 using powershell
+
+4. Enjoy!
+
+### Using Command Line
 
 - Clone the Project
 ```bash
    git clone https://github.com/Uglypr1nces/Online_RPS.git
 ```
 - Install Dotnet.8.x sdk on the official dotnet website: https://dotnet.microsoft.com/en-us/download
-
-- Create an ngrok account at https://ngrok.com/ and download the exe in the server folder (if youre the one running the server)
   
 - Build Project
 ```bash
@@ -39,20 +48,22 @@ How to Play (for Windows)
 ```bash
     cd Online_RPS
     powershell -file image_mover.ps1
-    cd ..
 ```
+
+- Run Game
+```bash
+   bin/Debug/Online_RPS.exe
+```
+
+##Server
+- Create an ngrok account at https://ngrok.com/ and download the exe in the server folder
+  
 - Run Server
 ```bash
     cd Server
     ngrok.exe tcp 8000
     python server.py
-    cd ..
 ```
-- Run Game
-```bash
-    Online_RPS/bin/Debug/Online_RPS.exe
-```
-
 Contributing:
 ---------------------------------------------------------------------------------------------------------------------------------------
 Contributions are welcome! If you'd like to contribute to the project, feel free to fork the repository, make your changes, and submit a pull request.
