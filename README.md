@@ -55,7 +55,7 @@ How to Play (for Windows)
    bin/Debug/Online_RPS.exe
 ```
 
-##Server
+## Server
 - Create an ngrok account at https://ngrok.com/ and download the exe in the server folder
   
 - Run Server
